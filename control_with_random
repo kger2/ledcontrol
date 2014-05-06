@@ -1,0 +1,93 @@
+//Final Code
+/* Credits
+Bhanu & Kevin
+*/
+
+int sensor1 = A0;          
+int sensorValue = 0;  
+int randNumber1;
+int randNumber2;
+int ledR = 0;
+int ledG = 0;
+int ledY = 0;
+int sensor2 = A5;
+int s1 = 0;
+int s2 = 0;
+int l1 = 0;
+int l2 = 0;
+int l3 = 0;
+
+
+void setup() {
+  randomSeed(analogRead(A1));
+  randNumber1 = random(7, 10);
+  randNumber2 = random(1,3);
+  // declare the ledPin as an OUTPUT:
+  ledR = randNumber1;
+  if(ledR == 7) {
+    if(randNumber2 ==1){
+      ledG = 9;
+      ledY = 8; }
+    else {
+      ledG = 8;
+      ledY = 9;}
+    }
+  if(ledR == 8) {
+    if(randNumber2 ==1){
+      ledG = 7;
+      ledY = 9; }
+    else {
+      ledG = 9;
+      ledY = 7;}
+     }
+  if(ledR == 9) {
+    if(randNumber2 ==1){
+      ledG = 8;
+      ledY = 7; }
+    else {
+      ledG = 7;
+      ledY = 8;}
+     }
+     
+  pinMode(ledR, OUTPUT);
+  pinMode(ledG, OUTPUT);
+  pinMode(ledY, OUTPUT);
+  Serial.begin(9600);
+  s2 = analogRead(sensor2);
+  l1 = s2/3;
+  l2 = 2*s2/3;
+  l3 = s2;  
+}
+
+void loop() {
+  s1 = analogRead(sensor1);
+  s2 = analogRead(sensor2);
+    if(0<=s2 && s2<=l1)
+      { 
+      digitalWrite(ledR, HIGH);
+      delay(s1);
+      }
+    else if(l1<s2 && s2<=l2)
+      {
+      digitalWrite(ledR, HIGH);
+      digitalWrite(ledG, HIGH);
+      delay(s1);
+      }
+    else if(l2<s2)
+      {
+      digitalWrite(ledR, HIGH);
+      digitalWrite(ledG, HIGH);
+      digitalWrite(ledY, HIGH);
+      delay(s1);
+      }
+  digitalWrite(ledR, LOW);
+  digitalWrite(ledG, LOW);
+  digitalWrite(ledY, LOW);
+  delay(s1);
+  //Serial.print("Value 1=");
+  //Serial.println(s1, DEC);
+  //Serial.print("Value 2=");
+  Serial.println(s2, DEC);
+  //Serial.println(ledR, DEC);
+  //Serial.println(randNumber, DEC);   
+}
