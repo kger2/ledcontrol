@@ -1,7 +1,17 @@
-//Final Code
-/* Credits
+/*
+This is the code for a IR Sensors based 3 mode LED light control.
+It allows the control of 3 basic things-
+1. Control the rate of flickering
+2. Control which lights are ON/OFF
+3. Control the order i.e. R RG RGY or G GY RGY, etc. All the six possible combinations
+have been added using a random number generator.
+
+Features-
+Includes Calibration of initial levels for different ambient light settings
+Credits
 Bhanu & Kevin
 */
+
 
 int sensor1 = A0;          
 int sensorValue = 0;  
